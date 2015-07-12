@@ -1,0 +1,66 @@
+# geometry
+x=
+y=
+width=
+height=26
+
+# style
+font='-f Inconsolata-g:size=9 -f FontAwesome:size=9 -f Terminus:size=9'
+back_color='#455a64'
+fore_color='#ffffff'
+underline_height=1
+pos='top'
+
+# module-specific formats
+fmt_clock="%{U-}"
+fmt_title="%{U-}"
+fmt_song_playing="%{U#64ffda}"
+fmt_song_paused="%{U#00bfa5}"
+fmt_song_stopped="%{U-}"
+fmt_vol="%{U#c6ff00}"
+fmt_vol_muted="%{U-}"
+fmt_good="%{U#69f0ae}"
+fmt_ok="%{U#ffd740}"
+fmt_bad="%{U-}"
+
+# dmenu format
+dfont='Inconsolata-g:size=9'
+dnsel_back=$back_color
+dnsel_fore=$fore_color
+dsel_back='#ffab40'
+dsel_fore=$fore_color
+
+# module icons
+ico_song_playing=""    # fa-music
+ico_song_paused=""     # fa-music
+ico_song_stopped="̸"    # fa-music + combining long solidus
+ico_vol=""             # fa-volume-up
+ico_vol_muted=""       # fa-volume-off
+ico_bat_charging=""    # fa-bolt
+ico_bat_discharging="" # fa-plug
+ico_wifi=""            # fa-wifi
+ico_wifi_off=""        # fa-wifi
+
+# tag icons
+tag_empty="%{F#b0bec5}⚪%{F-}"
+tag_occupied="%{F#b0bec5}⚫%{F-}"
+tag_current="%{F#ffffff}⚫%{F-}"
+tag_urgent="%{F#ffab40}⚫%{F-}"
+
+# module-specific options
+bat='/sys/class/power_supply/BAT1'
+clock_fmt='%l:%M %p' # not to be confused with fmt_clock
+netw_interface='net0'
+nete_interface=
+
+# panel format
+panel_fmt="%{l-o}$title$%{c-o}$tags$%{r+o}$song$$netw$$vol$"
+
+# internals: panel command, shell to pipe output into, and FIFO to write/read from
+[[ $pos = 'bottom' ]] && bottom='-b'
+panel_cmd='/usr/bin/lemonbar'
+panel="$panel_cmd -pg ${width}x${height}+$x+$y $font -B $back_color -F $fore_color -u $underline_height $bottom"
+sh='/usr/bin/bash'
+fifo='/tmp/panel-fifo'
+state='/tmp/panel-toggle'
+cmd_ifs=''
