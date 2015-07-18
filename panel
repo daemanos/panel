@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 # ensure the correct panel files are in force
-export PANEL_HOME=$XDG_CONFIG_HOME/panel
+export PANEL_HOME=${XDG_CONFIG_HOME:-$HOME/.config}/panel
 export PANEL_CONFIG=$PANEL_HOME/config
 
 # configuration
