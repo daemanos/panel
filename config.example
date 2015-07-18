@@ -5,23 +5,26 @@ width=
 height=26
 
 # style
-font='-f Inconsolata-g:size=9 -f FontAwesome:size=9 -f Terminus:size=9'
+font='-f Inconsolata-g:size=9 -f Material\-Design\-Iconic\-Font:style=Design-Icon-Font:size=11 -f Terminus:size=9'
 back_color='#455a64'
 fore_color='#ffffff'
 underline_height=1
 pos='top'
 
 # module-specific formats
-fmt_clock="%{U-}"
-fmt_title="%{U-}"
-fmt_song_playing="%{U#64ffda}"
-fmt_song_paused="%{U#00bfa5}"
-fmt_song_stopped="%{U-}"
-fmt_vol="%{U#c6ff00}"
-fmt_vol_muted="%{U-}"
-fmt_good="%{U#69f0ae}"
-fmt_ok="%{U#ffd740}"
-fmt_bad="%{U-}"
+fmt_clock="%{F-}"
+fmt_out_power="%{F-}"
+fmt_out_session="%{F-}"
+fmt_title="%{F-}"
+fmt_song_playing="%{F-}"
+fmt_song_paused="%{F#78909c}"
+fmt_song_stopped="%{F-}"
+fmt_vol="%{F-}"
+fmt_vol_muted="%{F#78909c}"
+fmt_good="%{F-}"
+fmt_bad="%{F#ff6e40}"
+fmt_wifi="%{F-}"
+fmt_wifi_off="%{F#78909c}"
 
 # dmenu format
 dfont='Inconsolata-g:size=9'
@@ -31,15 +34,18 @@ dsel_back='#ffab40'
 dsel_fore=$fore_color
 
 # module icons
-ico_song_playing=""    # fa-music
-ico_song_paused=""     # fa-music
-ico_song_stopped="̸"    # fa-music + combining long solidus
-ico_vol=""             # fa-volume-up
-ico_vol_muted=""       # fa-volume-off
-ico_bat_charging=""    # fa-bolt
-ico_bat_discharging="" # fa-plug
-ico_wifi=""            # fa-wifi
-ico_wifi_off=""        # fa-wifi
+ico_song_playing="%{A:mpc pause:}%{A}"             # play
+ico_song_paused="%{A:mpc play:}%{A}"               # pause
+ico_song_stopped=""                                 # empty
+ico_vol="%{A3:amixer set Master mute:}%{A}"        # volume-up
+ico_vol_muted="%{A:amixer set Master unmute:}%{A}" # volume-off
+ico_bat_charging=""                                # battery
+ico_bat_discharging=""                             # battery-flash
+ico_bat_bad=""                                     # battery-alert
+ico_wifi=""                                        # wifi
+ico_wifi_off=""                                    # wifi-off
+ico_out_power=""                                   # power
+ico_mem=""                                         # memory
 
 # tag icons
 tag_empty="%{F#b0bec5}⚪%{F-}"
@@ -49,12 +55,18 @@ tag_urgent="%{F#ffab40}⚫%{F-}"
 
 # module-specific options
 bat='/sys/class/power_supply/BAT1'
+bat_bad_thresh=15
 clock_fmt='%l:%M %p' # not to be confused with fmt_clock
 netw_interface='net0'
 nete_interface=
+out_power_cmd="poweroff"
+out_power_msg="Are you sure you want to shutdown?"
+mem_fmt="%0.0f"
+mem_bad_thresh=75
+tag_switch_cmd="herbstclient use"
 
 # panel format
-panel_fmt="%{l-o}$title$%{c-o}$tags$%{r+o}$song$$netw$$vol$"
+panel_fmt='%{l-o}$title$%{c-o}$tags$%{r-o}$song$$netw$$vol$$bat$'
 
 # internals: panel command, shell to pipe output into, and FIFO to write/read from
 [[ $pos = 'bottom' ]] && bottom='-b'
