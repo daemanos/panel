@@ -5,36 +5,40 @@ tags=()
 # brute force the tag list
 brute() {
     if [ $1 ]; then
+        buf="%{A:$tag_switch_cmd $1:}"
         case `herbstclient tag_status | sed "s/^.*\([\.:#!]\)${1}.*$/\1/"` in
             '#')
-                tags["$1"]="$tag_current"
+                buf="$buf$tag_current"
                 ;;
             ':')
-                tags["$1"]="$tag_occupied"
+                buf="$buf$tag_occupied"
                 ;;
             '.')
-                tags["$1"]="$tag_empty"
+                buf="$buf$tag_empty"
                 ;;
             '!')
-                tags["$1"]="$tag_urgent"
+                buf="$buf$tag_urgent"
                 ;;
         esac
+        tags["$1"]="$buf%{A}"
     else
         for tag in `herbstclient tag_status | tr '\t' ' '`; do
+            buf="%{A:$tag_switch_cmd ${tag:1}:}"
             case "${tag:0:1}" in
                 '#')
-                    tags["${tag##?}"]="$tag_current"
+                    buf="$buf$tag_current"
                     ;;
                 ':')
-                    tags["${tag##?}"]="$tag_occupied"
+                    buf="$buf$tag_occupied"
                     ;;
                 '.')
-                    tags["${tag##?}"]="$tag_empty"
+                    buf="$buf$tag_empty"
                     ;;
                 '!')
-                    tags["${tag##?}"]="$tag_urgent"
+                    buf="$buf$tag_urgent"
                     ;;
             esac
+            tags["${tag##?}"]="$buf%{A}"
         done
     fi
 }
