@@ -33,32 +33,19 @@ dnsel_fore=$fore_color
 dsel_back='#ffab40'
 dsel_fore=$fore_color
 
-# module icons (fontawesome)
-#ico_song_playing=""    # fa-music
-#ico_song_paused=""     # fa-music
-#ico_song_stopped=""     # empty
-#ico_vol=""             # fa-volume-up
-#ico_vol_muted=""       # fa-volume-off
-#ico_bat_charging=""    # fa-bolt
-#ico_bat_discharging="" # fa-plug
-#ico_wifi=""            # fa-wifi
-#ico_wifi_off=""         # empty
-#ico_out_power=""       # fa-power-off
-#ico_mem=""
-
-# module icons (material design)
-ico_song_playing=""    # play
-ico_song_paused=""     # pause
-ico_song_stopped=""     # empty
-ico_vol=""             # volume-up
-ico_vol_muted=""       # volume-off
-ico_bat_charging=""    # battery
-ico_bat_discharging="" # battery-flash
-ico_bat_bad=""         # battery-alert
-ico_wifi=""            # wifi
-ico_wifi_off=""        # wifi-off
-ico_out_power=""       # power
-ico_mem=""             # memory
+# module icons
+ico_song_playing="%{A:mpc pause:}%{A}"             # play
+ico_song_paused="%{A:mpc play:}%{A}"               # pause
+ico_song_stopped=""                                 # empty
+ico_vol="%{A3:amixer set Master mute:}%{A}"        # volume-up
+ico_vol_muted="%{A:amixer set Master unmute:}%{A}" # volume-off
+ico_bat_charging=""                                # battery
+ico_bat_discharging=""                             # battery-flash
+ico_bat_bad=""                                     # battery-alert
+ico_wifi=""                                        # wifi
+ico_wifi_off=""                                    # wifi-off
+ico_out_power=""                                   # power
+ico_mem=""                                         # memory
 
 # tag icons
 tag_empty="%{F#b0bec5}⚪%{F-}"
@@ -76,9 +63,10 @@ out_power_cmd="poweroff"
 out_power_msg="Are you sure you want to shutdown?"
 mem_fmt="%0.0f"
 mem_bad_thresh=75
+tag_switch_cmd="herbstclient use"
 
 # panel format
-panel_fmt="%{l-o}$title$%{c-o}$tags$%{r-o}$song$$netw$$vol$$bat$"
+panel_fmt='%{l-o}$title$%{c-o}$tags$%{r-o}$song$$netw$$vol$$bat$'
 
 # internals: panel command, shell to pipe output into, and FIFO to write/read from
 [[ $pos = 'bottom' ]] && bottom='-b'
