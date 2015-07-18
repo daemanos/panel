@@ -3,17 +3,17 @@ source $PANEL_CONFIG
 
 pull() {
     buf="song$cmd_ifs"
-    song=`mpc | awk -F ' - ' 'NR==1 { print $2 }'`
+    info=`mpc | head -1`
     case `mpc | awk 'NR==2 { print $1 }' | tr -d '[]'` in
         playing)
             buf="$buf$fmt_song_playing"
             ico="$ico_song_playing"
-            txt="$song"
+            txt="$info"
             ;;
         paused)
             buf="$buf$fmt_song_paused"
             ico="$ico_song_paused"
-            txt="$song"
+            txt="$info"
             ;;
         *)
             buf="$buf$fmt_song_stopped"
