@@ -1,3 +1,3 @@
 #!/bin/bash
-source $PANEL_HOME/panel.cfg
+source $PANEL_CONFIG
 xtitle -s | while read title ; do echo "title$cmd_ifs$fmt_title $title"; done

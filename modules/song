@@ -1,5 +1,5 @@
 #!/bin/bash
-source $PANEL_HOME/panel.cfg
+source $PANEL_CONFIG
 
 pull() {
     buf="song$cmd_ifs"

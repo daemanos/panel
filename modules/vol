@@ -1,5 +1,5 @@
 #!/bin/bash
-source $PANEL_HOME/panel.cfg
+source $PANEL_CONFIG
 if which amixer ; then
     while true ; do
         volinfo=$(amixer get Master | tail -1)

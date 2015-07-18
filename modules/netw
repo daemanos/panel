@@ -1,15 +1,15 @@
 #!/bin/bash
-source $PANEL_HOME/panel.cfg
+source $PANEL_CONFIG
 
 pull() {
     buf="netw$cmd_ifs"
     qual=`iwconfig net0 | grep 'Link' | sed -r 's/^.*Link Quality=(.*)\/70.*$/\1/g'`
     if [ $qual ]; then
-        [ $qual -gt 50 ] && buf="$buf$fmt_good" || buf="$buf$fmt_ok"
+        buf="$buf$fmt_wifi"
         essid=`iwconfig net0 | head -1 | sed -r 's/^.*ESSID:(.*)$/\1/g' | tr -d '" '`
         echo "$buf $ico_wifi $essid "
     else
-        echo "$buf$fmt_bad $ico_wifi_off "
+        echo "$buf$fmt_wifi_off $ico_wifi_off "
     fi
 }
 

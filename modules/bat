@@ -1,0 +1,22 @@
+#!/bin/bash
+source $PANEL_CONFIG
+
+if [ -e $bat ]; then
+    while true; do
+        buf="bat$cmd_ifs"
+        if grep -Eq 'Charging|Full' $bat/status ; then
+            buf="$buf$fmt_good $ico_bat_charging "
+        else
+            if [ "$(cat $bat/capacity)" -le $bat_bad_thresh ]; then
+                buf="$buf$fmt_bad $ico_bat_bad "
+            else
+                buf="$buf$fmt_good $ico_bat_discharging "
+            fi
+            buf="$buf$(cat $bat/capacity)% "
+        fi
+        echo "$buf"
+        sleep 60
+    done
+else
+    exit 1
+fi

@@ -1,0 +1,14 @@
+#!/bin/bash
+source $PANEL_CONFIG
+
+while true; do
+    mem=`free | awk '/Mem:/ { print ($3/$2)*100 }' OFMT="$mem_fmt"`
+    buf="mem$cmd_ifs"
+    if [[ $mem -ge $mem_bad_thresh ]]; then
+        buf="$buf$fmt_bad"
+    else
+        buf="$buf$fmt_good"
+    fi
+    echo "$buf $ico_mem $mem% "
+    sleep 60
+done

@@ -1,0 +1,33 @@
+#!/usr/bin/bash
+
+# ensure the correct panel files are in force
+export PANEL_HOME=$XDG_CONFIG_HOME/panel
+export PANEL_CONFIG=$PANEL_HOME/config
+
+# configuration
+source $PANEL_CONFIG
+[ -e $PANEL_HOME/prepare ] && source $PANEL_HOME/prepare "$@"
+
+# create the socket
+[ -e "$fifo" ] && rm "$fifo"
+mkfifo "$fifo"
+
+# kill any existing panels
+killall $panel_cmd
+
+# initiate modules
+declare -A modules
+for module in $PANEL_HOME/modules/* ; do
+    $module "$@" >"$fifo" &
+done
+
+while IFS='' read -r cmd; do
+    IFS="$cmd_ifs" read -ra infos <<< "$cmd"
+    modules[${infos[0]}]="${infos[1]}"
+
+    # TODO put this is config
+    echo "%{l}${modules[title]}%{c}${modules[tags]}%{r}${modules[song]}${modules[netw]}${modules[vol]}${modules[mem]}${modules[bat]}${modules[clock]}${modules[out]}"
+done <"$fifo" | $panel | $sh
+
+wait
+unset PANEL_HOME
