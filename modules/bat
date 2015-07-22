@@ -15,7 +15,7 @@ if [ -e $bat ]; then
             buf="$buf$(cat $bat/capacity)% "
         fi
         echo "$buf"
-        sleep 60
+        sleep 30
     done
 else
     exit 1
