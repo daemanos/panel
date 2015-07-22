@@ -1,6 +1,10 @@
 #!/bin/bash
 source $PANEL_CONFIG
 while true; do
-    echo "clock$cmd_ifs$fmt_clock $(date +"$clock_fmt" | sed 's/^ *//') "
-    sleep 5
+    now="$(date +"$clock_fmt")"
+    if [[ "$now" != "$before" ]]; then
+        echo "clock$cmd_ifs $now "
+        before="$now"
+    fi
+    sleep 1
 done
