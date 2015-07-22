@@ -1,2 +1,2 @@
 #!/bin/bash
-herbstclient pad ${1:-0} $height
+bspc config top_padding $height

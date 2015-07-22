@@ -1,70 +1,11 @@
 #!/bin/bash
 source $PANEL_CONFIG
-tags=()
-
-# brute force the tag list
-brute() {
-    if [ $1 ]; then
-        buf="%{A:$tag_switch_cmd $1:}"
-        case `herbstclient tag_status | sed "s/^.*\([\.:#!]\)${1}.*$/\1/"` in
-            '#')
-                buf="$buf$tag_current"
-                ;;
-            ':')
-                buf="$buf$tag_occupied"
-                ;;
-            '.')
-                buf="$buf$tag_empty"
-                ;;
-            '!')
-                buf="$buf$tag_urgent"
-                ;;
-        esac
-        tags["$1"]="$buf%{A}"
-    else
-        for tag in `herbstclient tag_status | tr '\t' ' '`; do
-            buf="%{A:$tag_switch_cmd ${tag:1}:}"
-            case "${tag:0:1}" in
-                '#')
-                    buf="$buf$tag_current"
-                    ;;
-                ':')
-                    buf="$buf$tag_occupied"
-                    ;;
-                '.')
-                    buf="$buf$tag_empty"
-                    ;;
-                '!')
-                    buf="$buf$tag_urgent"
-                    ;;
-            esac
-            tags["${tag##?}"]="$buf%{A}"
-        done
-    fi
-}
-
-# send the current tag buffer to the panel
-write() { echo "tags$cmd_ifs${tags[@]} " ; }
-
-# initial setup
-brute
-write
-
-# wait for events
-herbstclient --idle 'tag_changed|tag_flags|reload' | while read event ; do
-    case `awk -F '\t' '{ print $1 }' <<< "$event"` in
-        tag_changed)
-            brute "$current_tag"
-            current_tag=`awk -F '\t' '{ print $2 }' <<< "$event"`
-            tags[$current_tag]="$tag_current"
-            ;;
-        tag_flags)
-            brute
-            ;;
-        reload)
-            tags=()
-            brute
-            ;;
-    esac
-    write
+bspc control --subscribe | while read status; do
+    echo "$status" | sed -r \
+        -e "s/:[^OoFfUu]+$/: /" \
+        -e "s/f([^:#\-]+):/%{A:$tag_switch_cmd \1:}$tag_empty%{A} /g" \
+        -e "s/[OFU][^:#\-]+:/$tag_current /g" \
+        -e "s/o([^:#\-]+):/%{A:$tag_switch_cmd \1:}$tag_occupied%{A} /g" \
+        -e "s/u([^:#\-]+):/%{A:$tag_switch_cmd \1:}$tag_urgent%{A} /g" \
+        -e "s/^[^:]+:/tags$cmd_ifs /"
 done
