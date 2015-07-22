@@ -21,12 +21,13 @@ for module in $PANEL_HOME/modules/* ; do
     $module "$@" >"$fifo" &
 done
 
+fmt_parsed="$(echo "$panel_fmt" | sed -r 's/\$([A-Za-z][0-9_A-Za-z]*)\$/\${modules\[\1\]}/g')"
 while IFS='' read -r cmd; do
     IFS="$cmd_ifs" read -ra infos <<< "$cmd"
     modules[${infos[0]}]="${infos[1]}"
 
-    # TODO put this is config
-    echo "%{l}${modules[title]}%{c}${modules[tags]}%{r}${modules[song]}${modules[netw]}${modules[vol]}${modules[mem]}${modules[bat]}${modules[clock]}${modules[out]}"
+    eval echo -n "$fmt_parsed" # kind of hacky, but `eval` likes to strip
+    echo " "                   # spaces from the end of things
 done <"$fifo" | $panel | $sh
 
 wait
