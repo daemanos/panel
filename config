@@ -25,6 +25,7 @@ fmt_good="%{F-}"
 fmt_bad="%{F#ff6e40}"
 fmt_wifi="%{F-}"
 fmt_wifi_off="%{F#78909c}"
+fmt_temp="%{F-}"
 
 # dmenu format
 dfont='Inconsolata-g:size=9'
@@ -46,6 +47,7 @@ ico_wifi=""                                        # wifi
 ico_wifi_off=""                                    # wifi-off
 ico_out_power=""                                   # power
 ico_mem=""                                         # memory
+ico_temp=""                                        # fire
 
 # tag icons
 tag_empty="%{F#b0bec5}⚪%{F-}"
@@ -57,8 +59,8 @@ tag_urgent="%{F#ffab40}⚫%{F-}"
 bat='/sys/class/power_supply/BAT1'
 bat_bad_thresh=15
 clock_fmt='%I:%M %p' # not to be confused with fmt_clock
-netw_interface='net0'
-nete_interface=
+netw_iface='net0'
+nete_iface=
 out_power_cmd="poweroff"
 out_power_msg="Are you sure you want to shutdown?"
 mem_fmt="%0.0f"
@@ -66,7 +68,7 @@ mem_bad_thresh=75
 tag_switch_cmd="bspc desktop -f"
 
 # panel format
-panel_fmt='%{l}$title$%{c}$tags$%{r}$song$$netw$$vol$$mem$$bat$$clock$ '
+panel_fmt='%{l}$title$%{c}$tags$%{r}$song$$netw$$vol$$temp$$bat$  $clock$ '
 
 # internals: panel command, shell to pipe output into, and FIFO to write/read from
 [[ $pos = 'bottom' ]] && bottom='-b'
