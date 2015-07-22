@@ -56,17 +56,17 @@ tag_urgent="%{F#ffab40}⚫%{F-}"
 # module-specific options
 bat='/sys/class/power_supply/BAT1'
 bat_bad_thresh=15
-clock_fmt='%l:%M %p' # not to be confused with fmt_clock
+clock_fmt='%I:%M %p' # not to be confused with fmt_clock
 netw_interface='net0'
 nete_interface=
 out_power_cmd="poweroff"
 out_power_msg="Are you sure you want to shutdown?"
 mem_fmt="%0.0f"
 mem_bad_thresh=75
-tag_switch_cmd="herbstclient use"
+tag_switch_cmd="bspc desktop -f"
 
 # panel format
-panel_fmt='%{l-o}$title$%{c-o}$tags$%{r-o}$song$$netw$$vol$$bat$'
+panel_fmt='%{l}$title$%{c}$tags$%{r}$song$$netw$$vol$$mem$$bat$$clock$ '
 
 # internals: panel command, shell to pipe output into, and FIFO to write/read from
 [[ $pos = 'bottom' ]] && bottom='-b'
