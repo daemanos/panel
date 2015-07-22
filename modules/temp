@@ -1,0 +1,13 @@
+#!/bin/bash
+source $PANEL_CONFIG
+
+if which acpi >/dev/null; then
+    while true; do
+        temp=`acpi -t | awk '{ printf "%0.0f°C", $4 }'`
+        if [[ "$temp" != "$old" ]]; then
+            echo "temp$cmd_ifs $fmt_temp $ico_temp $temp "
+            old="$temp"
+        fi
+        sleep 5
+    done
+fi
