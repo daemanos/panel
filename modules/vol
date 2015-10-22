@@ -6,10 +6,10 @@ if which amixer ; then
         if [[ "$volinfo" != "$before" ]]; then
             buf="vol$cmd_ifs"
             if grep -wq on <<< "$volinfo" ; then
-                buf="$buf$fmt_vol %{A:amixer set Master mute:}$ico_vol%{A} "
+                buf="$buf$fmt_vol $ico_vol "
                 echo "$buf$(awk '{ print $4 }' <<< "$volinfo" | tr -d '[]') "
             else
-                echo "$buf$fmt_vol_muted %{A:amixer set Master unmute:}$ico_vol_muted%{A} "
+                echo "$buf$fmt_vol_muted $ico_vol_muted "
             fi
             before="$volinfo"
         fi

@@ -1,0 +1,14 @@
+#!/bin/bash
+# vim:set syntax=sh:
+source $PANEL_CONFIG
+bspc control --subscribe | perl -pe <<PERL
+%tags = (
+    "O", "$tag_current",
+    "F", "$tag_current",
+    "U", "$tag_current",
+    "o", "%{A:$tag_switch_cmd \\1:}$tag_occupied%{A}",
+    "f", "%{A:$tag_switch_cmd \\1:}$tag_empty%{A}",
+    "u", "%{A:$tag_switch_cmd \\1:}$tag_urgent%{A}"
+);
+
+PERL

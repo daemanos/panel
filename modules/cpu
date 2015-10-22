@@ -4,7 +4,7 @@ source $PANEL_CONFIG
 while true; do
     cpu=`awk '/cpu / { printf "%0.0f%%\n", ($2+$4)*100/($2+$4+$5) }' </proc/stat`
     if [[ "$cpu" != "$old" ]]; then
-        echo "cpu$cmd_ifs $fmt_cpu $ico_cpu $cpu% "
+        echo "cpu$cmd_ifs $fmt_cpu $ico_cpu $cpu "
         old="$cpu"
     fi
     sleep 5

@@ -1,23 +1,18 @@
 #!/bin/bash
 source $PANEL_CONFIG
+[ ! -e /sys/class/net/$netw_iface ] && exit 1
 
-pull() {
+oldsig=""
+while true; do
     buf="netw$cmd_ifs"
-    qual=`iwconfig $netw_iface | grep 'Link' | sed -r 's/^.*Link Quality=(.*)\/70.*$/\1/g'`
-    if [ $qual ]; then
-        buf="$buf$fmt_wifi"
-        essid=`iwconfig $netw_iface | head -1 | sed -r 's/^.*ESSID:(.*)$/\1/g' | tr -d '" '`
-        echo "$buf $ico_wifi $essid "
-    else
-        echo "$buf$fmt_wifi_off $ico_wifi_off "
+    sig="$(awk "/$netw_iface:/ { print \$4 }" </proc/net/wireless)"
+    if [[ "$sig" != "$oldsig" ]]; then
+        if [[ -z "$sig" ]]; then
+            echo "$buf$fmt_wifi_off $ico_wifi_off "
+        else
+            echo "$buf$fmt_wifi $ico_wifi ${sig%.} dBm "
+        fi
+        oldsig="$sig"
     fi
-}
-
-if [ -e /sys/class/net/$netw_iface ]; then
-    pull
-    iwevent | while read; do
-        pull
-    done
-else
-    exit 1
-fi
+    sleep 1
+done

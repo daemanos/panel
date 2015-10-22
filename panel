@@ -1,8 +1,5 @@
 #!/usr/bin/bash
-
-# ensure the correct panel files are in force
-export PANEL_HOME=${XDG_CONFIG_HOME:-$HOME/.config}/panel
-export PANEL_CONFIG=$PANEL_HOME/config
+echo "panel called with ($@) at $(date)" >> "$HOME/foo"
 
 # configuration
 source $PANEL_CONFIG
@@ -13,7 +10,7 @@ source $PANEL_CONFIG
 mkfifo "$fifo"
 
 # kill any existing panels
-killall $panel_cmd
+$PANEL_HOME/kill
 
 # initiate modules
 declare -A modules
@@ -26,8 +23,7 @@ while IFS='' read -r cmd; do
     IFS="$cmd_ifs" read -ra infos <<< "$cmd"
     modules[${infos[0]}]="${infos[1]}"
 
-    eval echo -n "$fmt_parsed" # kind of hacky, but `eval` likes to strip
-    echo " "                   # spaces from the end of things
+    eval echo "$fmt_parsed"
 done <"$fifo" | $panel | $sh
 
 wait

@@ -1,4 +1,5 @@
 #!/bin/bash
+# vim:set syntax=sh:
 source $PANEL_CONFIG
 bspc control --subscribe | while read status; do
     echo "$status" | sed -r \

@@ -1,0 +1,3 @@
+#!/bin/bash
+$PANEL_HOME/kill
+$PANEL_HOME/panel &
