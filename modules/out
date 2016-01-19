@@ -1,3 +1,0 @@
-#!/bin/bash
-source $PANEL_CONFIG
-echo "out$cmd_ifs$fmt_out %{A:gksu -m '$out_power_msg' $out_power_cmd:}$ico_out_power%{A} "
