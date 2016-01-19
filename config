@@ -73,5 +73,4 @@ tag_switch_cmd="bspc desktop -f"
 sh='/usr/bin/bash'
 fifo='/tmp/panel-fifo'
 pidfile='/tmp/panel-pid'
-state='/tmp/panel-toggle'
 cmd_ifs=''
