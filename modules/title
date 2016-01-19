@@ -1,3 +1,5 @@
 #!/bin/bash
-source $PANEL_CONFIG
-xtitle -s | while read title ; do echo "title$cmd_ifs$fmt_title $title"; done
+source $HOME/.config/panel/config
+if which xtitle; then
+    xtitle -s | while read title ; do echo "title$cmd_ifs$fmt_title $title"; done
+fi

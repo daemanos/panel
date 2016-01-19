@@ -1,5 +1,5 @@
 #!/bin/bash
-source $PANEL_CONFIG
+source $HOME/.config/panel/config
 
 if [ -e $bat ]; then
     while true; do

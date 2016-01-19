@@ -1,5 +1,5 @@
 #!/bin/bash
-source $PANEL_CONFIG
+source $HOME/.config/panel/config
 [ ! -e /sys/class/net/$netw_iface ] && exit 1
 
 oldsig=""
@@ -8,9 +8,9 @@ while true; do
     sig="$(awk "/$netw_iface:/ { print \$4 }" </proc/net/wireless)"
     if [[ "$sig" != "$oldsig" ]]; then
         if [[ -z "$sig" ]]; then
-            echo "$buf$fmt_wifi_off $ico_wifi_off "
+            echo "$buf$fmt_wifi_off $ico_wifi_off"
         else
-            echo "$buf$fmt_wifi $ico_wifi ${sig%.} dBm "
+            echo "$buf$fmt_wifi $ico_wifi ${sig%.} dBm"
         fi
         oldsig="$sig"
     fi
