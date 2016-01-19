@@ -24,8 +24,6 @@ while IFS='' read -r cmd; do
     echo "%{l} ${modules[title]}%{c}${modules[tags]}%{r}${modules[song]} ${modules[clock]}  %{F-}"
 
 done <"$fifo" | /usr/bin/lemonbar -pg ${width}x${height}+${x}+${y} \
-    -f 'Inconsolata\-g:style=Regular:size=8' \
-    -f 'Material\-Design\-Iconic\-Font:style=Design-Icon-Font:size=11' \
-    -f 'Terminus:size=9' -B $back_color -F $fore_color | $sh
+    -f $font_1 -f $font_2 -f $font_3 -B $back_color -F $fore_color | $sh
 
 wait

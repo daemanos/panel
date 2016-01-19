@@ -9,7 +9,9 @@ width=2028
 height=32
 
 # style
-font_1="Inconsolata\-g:style=Regular:size=8"
+font_1='Inconsolata\-g:style=Regular:size=8'
+font_2='Material\-Design\-Iconic\-Font:style=Design-Icon-Font:size=11'
+font_3='Terminus:size=9'
 back_color=$black
 fore_color=$bright_white
 
