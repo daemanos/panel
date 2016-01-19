@@ -5,7 +5,7 @@ source $HOME/.config/colors/colors.sh
 # geometry
 x=10
 y=10
-width=2028
+width=$(($(xdpyinfo | grep 'dimensions:' | cut -d' ' -f7 | cut -dx -f1)-20))
 height=32
 
 # style
