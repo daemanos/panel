@@ -1,4 +1,0 @@
-#!/bin/bash
-if pgrep lemonbar; then
-    pkill lemonbar
-fi

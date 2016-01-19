@@ -1,2 +1,0 @@
-#!/bin/bash
-bspc config top_padding $height
