@@ -12,8 +12,8 @@ height=32
 font_1='Inconsolata\-g:style=Regular:size=8'
 font_2='Material\-Design\-Iconic\-Font:style=Design-Icon-Font:size=11'
 font_3='Terminus:size=9'
-back_color=$black
-fore_color=$bright_white
+back_color="#$black"
+fore_color="#$bright_white"
 
 # module-specific formats
 fmt_clock="%{F-} "
@@ -21,20 +21,20 @@ fmt_out_power="%{F-}"
 fmt_out_session="%{F-}"
 fmt_title="%{F-}"
 fmt_song_playing="%{F-}"
-fmt_song_paused="%{F$gray}"
+fmt_song_paused="%{F#$gray}"
 fmt_song_stopped="%{F-}"
 fmt_vol="%{F-}"
-fmt_vol_muted="%{F$gray}"
+fmt_vol_muted="%{F#$gray}"
 fmt_good="%{F-}"
 fmt_bad="%{F#ff6e40}"
 fmt_wifi="%{F-}"
-fmt_wifi_off="%{F$gray}"
+fmt_wifi_off="%{F#$gray}"
 fmt_temp="%{F-}"
 
 # dmenu format
-dnsel_back=$back_color
-dnsel_fore=$gray
-dsel_back=$orange
+dnsel_back="#$back_color"
+dnsel_fore="#$gray"
+dsel_back="#$orange"
 dsel_fore="#FFFFFF"
 
 # module icons
@@ -56,8 +56,8 @@ ico_cpu=""              # memory
 # tag icons
 tag_empty="%{F#b0bec5}⚪%{F-}"
 tag_occupied="%{F#b0bec5}⚫%{F-}"
-tag_current="%{F$white}⚫%{F-}"
-tag_urgent="%{F$orange}⚫%{F-}"
+tag_current="%{F#$white}⚫%{F-}"
+tag_urgent="%{F#$orange}⚫%{F-}"
 
 # module-specific options
 bat='/sys/class/power_supply/BAT1'
