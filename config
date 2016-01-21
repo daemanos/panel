@@ -32,7 +32,7 @@ fmt_wifi_off="%{F#$gray}"
 fmt_temp="%{F-}"
 
 # dmenu format
-dnsel_back="#$back_color"
+dnsel_back=$back_color
 dnsel_fore="#$gray"
 dsel_back="#$orange"
 dsel_fore="#FFFFFF"
