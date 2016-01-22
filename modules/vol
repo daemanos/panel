@@ -2,7 +2,7 @@
 source $PANEL_CONFIG
 if which amixer ; then
     while true ; do
-        volinfo=$(amixer get Master | tail -1)
+        volinfo=$(amixer get Master -c $vol_card | tail -1)
         if [[ "$volinfo" != "$before" ]]; then
             buf="vol$cmd_ifs"
             if grep -wq on <<< "$volinfo" ; then

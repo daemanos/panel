@@ -1,12 +1,12 @@
-# " vim: set syntax=sh :
+# vim:set syntax=sh:
 # geometry
 x=
 y=
 width=
-height=28
+height=32
 
 # style
-font='-f Inconsolata-g:size=9 -f Material\-Design\-Iconic\-Font:style=Design-Icon-Font:size=11 -f Terminus:size=9'
+font='-f Inconsolata\-g:size=9 -f MaterialDesignIconicFont:style=Design-Icon-Font:size=13 -f Terminus:size=12'
 back_color='#455a64'
 fore_color='#ffffff'
 underline_height=1
@@ -58,7 +58,7 @@ tag_current="%{F#ffffff}⚫%{F-}"
 tag_urgent="%{F#ffab40}⚫%{F-}"
 
 # module-specific options
-bat='/sys/class/power_supply/BAT1'
+bat='/sys/class/power_supply/BAT0'
 bat_bad_thresh=15
 clock_fmt='%I:%M' # not to be confused with fmt_clock
 netw_iface='net0'
@@ -68,9 +68,10 @@ out_power_msg="Are you sure you want to shutdown?"
 mem_fmt="%0.0f"
 mem_bad_thresh=75
 tag_switch_cmd="bspc desktop -f"
+vol_card=1
 
 # panel format
-panel_fmt='%{l}$title$%{c}$tags$%{r}$song$ $netw$ $vol$  $clock$ %{F-}'
+panel_fmt='%{l}$title$%{c}$tags$%{r}$song$ $netw$ $vol$ $bat$ $clock$ %{F-}'
 
 # internals: panel command, shell to pipe output into, and FIFO to write/read from
 [[ $pos = 'bottom' ]] && bottom='-b'

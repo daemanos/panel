@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-echo "panel called with ($@) at $(date)" >> "$HOME/foo"
+#echo "panel called with ($@) at $(date)" >> "$HOME/foo"
 
 # configuration
 source $PANEL_CONFIG
