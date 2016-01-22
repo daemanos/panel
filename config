@@ -63,7 +63,7 @@ tag_urgent="%{F#$orange}⚫%{F-}"
 bat='/sys/class/power_supply/BAT1'
 bat_bad_thresh=15
 
-clock_fmt='%I:%M' # not to be confused with fmt_clock
+clock_fmt='%H:%M' # not to be confused with fmt_clock
 
 netw_iface='net0'
 
