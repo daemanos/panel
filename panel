@@ -1,30 +1,29 @@
 #!/usr/bin/bash
-#echo "panel called with ($@) at $(date)" >> "$HOME/foo"
+ROOT="$HOME/.config/panel"
+source $ROOT/config
 
-# configuration
-source $PANEL_CONFIG
-[ -e $PANEL_HOME/prepare ] && source $PANEL_HOME/prepare "$@"
-
-# create the socket
+# create the socket (and remove if necessary)
 [ -e "$fifo" ] && rm "$fifo"
 mkfifo "$fifo"
 
-# kill any existing panels
-$PANEL_HOME/kill
+# create the pid file (and kill existing panels if necessary)
+[ -e "$pidfile" ] && pkill -P $(cat "$pidfile")
+echo $$ >"$pidfile"
 
 # initiate modules
 declare -A modules
-for module in $PANEL_HOME/modules/* ; do
+for module in $ROOT/modules/* ; do
     $module "$@" >"$fifo" &
 done
 
-fmt_parsed="$(echo "$panel_fmt" | sed -r 's/\$([A-Za-z][0-9_A-Za-z]*)\$/\${modules\[\1\]}/g')"
+# main loop
 while IFS='' read -r cmd; do
     IFS="$cmd_ifs" read -ra infos <<< "$cmd"
     modules[${infos[0]}]="${infos[1]}"
 
-    eval echo "$fmt_parsed"
-done <"$fifo" | $panel | $sh
+    echo "%{l} ${modules[title]}%{c}${modules[tags]}%{r}${modules[song]} ${modules[clock]}  %{F-}"
+
+done <"$fifo" | /usr/bin/lemonbar -pg ${width}x${height}+${x}+${y} \
+    -f $font_1 -f $font_2 -f $font_3 -B $back_color -F $fore_color | $sh
 
 wait
-unset PANEL_HOME

@@ -1,4 +1,0 @@
-#!/bin/bash
-# the most useless module
-source $PANEL_CONFIG
-echo "hostname$cmd_ifs $fmt_id $(whoami)@$(hostname) "

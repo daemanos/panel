@@ -1,5 +1,5 @@
 #!/bin/bash
-source $PANEL_CONFIG
+source $HOME/.config/panel/config
 if which amixer ; then
     while true ; do
         volinfo=$(amixer get Master -c $vol_card | tail -1)
@@ -7,9 +7,9 @@ if which amixer ; then
             buf="vol$cmd_ifs"
             if grep -wq on <<< "$volinfo" ; then
                 buf="$buf$fmt_vol $ico_vol "
-                echo "$buf$(awk '{ print $4 }' <<< "$volinfo" | tr -d '[]') "
+                echo "$buf$(awk '{ print $4 }' <<< "$volinfo" | tr -d '[]')"
             else
-                echo "$buf$fmt_vol_muted $ico_vol_muted "
+                echo "$buf$fmt_vol_muted $ico_vol_muted"
             fi
             before="$volinfo"
         fi
