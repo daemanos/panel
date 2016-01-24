@@ -9,8 +9,8 @@ width=$(($(xdpyinfo | grep 'dimensions:' | cut -d' ' -f7 | cut -dx -f1)-20))
 height=32
 
 # style
-font_1='Inconsolata\-g:style=Regular:size=8'
-font_2='Material\-Design\-Iconic\-Font:style=Design-Icon-Font:size=11'
+font_1='Inconsolata\-g:size=8'
+font_2='Material Icons:size=11'
 font_3='Terminus:size=9'
 back_color="#$black"
 fore_color="#$bright_white"
@@ -38,20 +38,16 @@ dsel_back="#$orange"
 dsel_fore="#FFFFFF"
 
 # module icons
-ico_song_playing=""     # play
-ico_song_paused=""      # pause
-ico_song_stopped=""      # empty
+ico_song_playing=""     # play
+ico_song_paused=""      # pause
 ico_vol=""              # volume-up
 ico_vol_muted=""        # volume-off
 ico_bat_charging=""     # battery
 ico_bat_discharging=""  # battery-flash
 ico_bat_bad=""          # battery-alert
+ico_song_stopped=""      # empty
 ico_wifi=""             # wifi
 ico_wifi_off=""         # wifi-off
-ico_out_power=""        # power
-ico_mem=""              # memory
-ico_temp=""             # fire
-ico_cpu=""              # memory
 
 # tag icons
 tag_empty="%{F#b0bec5}⚪%{F-}"
