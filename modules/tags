@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim:set syntax=sh:
 source $HOME/.config/panel/config
-bspc control --subscribe | while read status; do
+bspc subscribe report | while read status; do
     echo "$status" | sed -r \
         -e "s/:[^OoFfUu]+$/: /" \
         -e "s/f([^:#\-]+):/%{A:$tag_switch_cmd \1:}$tag_empty%{A} /g" \
