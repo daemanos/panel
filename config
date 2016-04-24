@@ -1,5 +1,4 @@
 # " vim: set syntax=sh :
-
 source $HOME/.config/colors/colors.sh
 
 # geometry
@@ -9,43 +8,23 @@ width=$(($(xdpyinfo | grep 'dimensions:' | cut -d' ' -f7 | cut -dx -f1)-20))
 height=32
 
 # style
-font_1='Inconsolata\-g:size=8'
+font_1='Iosevka:size=8:style=Medium,Regular'
 font_2='Material Icons:size=11'
 font_3='Terminus:size=9'
 back_color="#$black"
 fore_color="#$bright_white"
 
 # module-specific formats
-fmt_clock="%{F-} "
-fmt_out_power="%{F-}"
-fmt_out_session="%{F-}"
-fmt_title="%{F-}"
-fmt_song_playing="%{F-}"
-fmt_song_paused="%{F#$gray}"
-fmt_song_stopped="%{F-}"
-fmt_vol="%{F-}"
-fmt_vol_muted="%{F#$gray}"
-fmt_good="%{F-}"
-fmt_bad="%{F#ff6e40}"
-fmt_wifi="%{F-}"
-fmt_wifi_off="%{F#$gray}"
-fmt_temp="%{F-}"
-
-# dmenu format
-dnsel_back=$back_color
-dnsel_fore="#$gray"
-dsel_back="#$orange"
-dsel_fore="#FFFFFF"
+fmt_clock="%{F-}%{B-} "
+fmt_title="%{F-}%{B-}"
+fmt_song_playing="%{F-}%{B-}"
+fmt_song_paused="%{F#$gray}%{B-}"
+fmt_wifi="%{F-}%{B-}"
+fmt_wifi_off="%{F#$gray}%{B-}"
 
 # module icons
 ico_song_playing=""     # play
 ico_song_paused=""      # pause
-ico_vol=""              # volume-up
-ico_vol_muted=""        # volume-off
-ico_bat_charging=""     # battery
-ico_bat_discharging=""  # battery-flash
-ico_bat_bad=""          # battery-alert
-ico_song_stopped=""      # empty
 ico_wifi=""             # wifi
 ico_wifi_off=""         # wifi-off
 
@@ -56,15 +35,9 @@ tag_current="%{F#$white}⚫%{F-}"
 tag_urgent="%{F#$orange}⚫%{F-}"
 
 # module-specific options
-bat='/sys/class/power_supply/BAT0'
-bat_bad_thresh=15
-
 clock_fmt='%H:%M' # not to be confused with fmt_clock
-
 netw_iface='net0'
-
 tag_switch_cmd="bspc desktop -f"
-
 vol_card=1
 
 # internals

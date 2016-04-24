@@ -21,7 +21,7 @@ while IFS='' read -r cmd; do
     IFS="$cmd_ifs" read -ra infos <<< "$cmd"
     modules[${infos[0]}]="${infos[1]}"
 
-    echo "%{l} ${modules[title]}%{c}${modules[tags]}%{r}${modules[song]} ${modules[clock]}  %{F-}"
+    echo "%{l} ${modules[title]}%{c}${modules[tags]}%{r}${modules[song]} ${modules[clock]} %{F-}%{B-}"
 
 done <"$fifo" | /usr/bin/lemonbar -pg ${width}x${height}+${x}+${y} \
     -f "$font_1" -f "$font_2" -f "$font_3" -B $back_color -F $fore_color | $sh

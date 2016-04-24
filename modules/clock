@@ -3,7 +3,7 @@ source $HOME/.config/panel/config
 while true; do
     now="$(date +"$clock_fmt")"
     if [[ "$now" != "$before" ]]; then
-        echo "clock$cmd_ifs$fmt_clock$now"
+        echo "clock$cmd_ifs$fmt_clock$now "
         before="$now"
     fi
     sleep 1

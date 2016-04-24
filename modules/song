@@ -16,9 +16,6 @@ pull() {
             txt="$info"
             ;;
         *)
-            buf="$buf$fmt_song_stopped"
-            ico="$ico_song_stopped"
-            txt=""
             ;;
     esac
     echo "$buf $ico $txt"
