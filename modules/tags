@@ -2,11 +2,25 @@
 # vim:set syntax=sh:
 source $HOME/.config/panel/config
 bspc subscribe report | while read status; do
-    echo "$status" | sed -r \
-        -e "s/:[^OoFfUu]+$/: /" \
-        -e "s/f([^:#\-]+):/%{A:$tag_switch_cmd \1:}$tag_empty%{A} /g" \
-        -e "s/[OFU][^:#\-]+:/$tag_current /g" \
-        -e "s/o([^:#\-]+):/%{A:$tag_switch_cmd \1:}$tag_occupied%{A} /g" \
-        -e "s/u([^:#\-]+):/%{A:$tag_switch_cmd \1:}$tag_urgent%{A} /g" \
-        -e "s/^[^:]+:/tags$cmd_ifs /"
+    buf="tags$cmd_ifs"
+    ws=$(echo $status | tr ':' '\n')
+    for w in $ws; do
+        case ${w:0:1} in
+            O|F|U)
+                buf="$buf $tag_current"
+                ;;
+            o)
+                buf="$buf $tag_occupied"
+                ;;
+            f)
+                buf="$buf $tag_empty"
+                ;;
+            u)
+                buf="$buf $tag_urent"
+                ;;
+            ?)
+                ;;
+        esac
+    done
+    echo "$buf"
 done
