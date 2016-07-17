@@ -24,7 +24,7 @@ while IFS='' read -r cmd; do
 
     echo "%{l}   ${modules[tags]}%{r}${modules[song]} ·${modules[clock]}%{F-}%{B-} "
 
-done <"$fifo" | /usr/bin/lemonbar -pg ${width}x${height}+${x}+${y} \
+done <"$fifo" | /usr/bin/lemonbar -n panel -pg ${width}x${height}+${x}+${y} \
     -f "$font_1" -f "$font_2" -f "$font_3" -B $back_color -F $fore_color | $sh
 
 wait
