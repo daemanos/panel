@@ -1,22 +1,23 @@
 #!/bin/bash
 # vim:set syntax=sh:
 source $HOME/.config/panel/config
+
 bspc subscribe report | while read status; do
     buf="tags$cmd_ifs"
     ws=$(echo $status | tr ':' '\n')
     for w in $ws; do
         case ${w:0:1} in
             O|F|U)
-                buf="$buf $tag_current"
+                buf="$buf$tag_current"
                 ;;
             o)
-                buf="$buf $tag_occupied"
+                buf="$buf$tag_occupied"
                 ;;
             f)
-                buf="$buf $tag_empty"
+                buf="$buf$tag_empty"
                 ;;
             u)
-                buf="$buf $tag_urent"
+                buf="$buf$tag_urgent"
                 ;;
             ?)
                 ;;

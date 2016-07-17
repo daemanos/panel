@@ -5,13 +5,13 @@ source $HOME/.config/colors/colors.sh
 x=10
 y=10
 width=$(($(xdpyinfo | grep 'dimensions:' | cut -d' ' -f7 | cut -dx -f1)-20))
-height=32
+height=28
 
 # style
-font_1='Iosevka:size=8:style=Medium,Regular'
+font_1='Source Code Pro:size=8:style=Medium,Regular'
 font_2='Material Icons:size=11'
-font_3='Terminus:size=9'
-back_color="#$black"
+#font_3='Terminus:size=9'
+back_color="#00$black"
 fore_color="#$bright_white"
 
 # module-specific formats
@@ -29,10 +29,10 @@ ico_wifi=""             # wifi
 ico_wifi_off=""         # wifi-off
 
 # tag icons
-tag_empty="%{F#b0bec5}⚪%{F-}"
-tag_occupied="%{F#b0bec5}⚫%{F-}"
-tag_current="%{F#$white}⚫%{F-}"
-tag_urgent="%{F#$orange}⚫%{F-}"
+tag_empty="%{F#$gray}───%{F-}"
+tag_occupied="%{F#b0bec5}───%{F-}"
+tag_current="%{F#$white}───%{F-}"
+tag_urgent="%{F#$orange}───%{F-}"
 
 # module-specific options
 clock_fmt='%H:%M' # not to be confused with fmt_clock
