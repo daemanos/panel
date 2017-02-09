@@ -29,10 +29,10 @@ ico_wifi=""             # wifi
 ico_wifi_off=""         # wifi-off
 
 # tag icons
-tag_empty="%{F#$gray}───%{F-}"
-tag_occupied="%{F#b0bec5}───%{F-}"
-tag_current="%{F#$white}───%{F-}"
-tag_urgent="%{F#$orange}───%{F-}"
+tag_empty="%{F#$gray} ○ %{F-}"
+tag_occupied="%{F#$gray} ● %{F-}"
+tag_current="%{F#$bright_white} ● %{F-}"
+tag_urgent="%{F#$orange} ● %{F-}"
 
 # module-specific options
 clock_fmt='%H:%M' # not to be confused with fmt_clock
