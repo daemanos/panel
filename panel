@@ -27,11 +27,13 @@ while IFS='' read -r cmd; do
 done <"$fifo" | /usr/bin/lemonbar -n panel -bpdg ${width}x${height}+${x}+${y} \
     -f "$font_1" -f "$font_2" -f "$font_3" -B $back_color -F $fore_color | $sh &
 
-# fix fullscreen behavior
-panel_id=$(xdo id -a panel)
-bspc subscribe node_state | while read evt mid did wid name state ; do
-    #echo "wid:$wid name:$name state:$state"
-    [ $name = "fullscreen" -a $state = "on" ] && xdo below -t $wid $panel_id
-done &
+wid=$(xdo id -a panel)
+tries_left=20
+while [ -z "$wid" -a "$tries_left" -gt 0 ]; do
+    sleep 0.05
+    wid=$(xdo id -a panel)
+    tries_left=$((tries_left - 1))
+done
+[ -n "$wid" ] && xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
 
 wait
