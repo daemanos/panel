@@ -22,10 +22,11 @@ while IFS='' read -r cmd; do
     IFS="$cmd_ifs" read -ra infos <<< "$cmd"
     modules[${infos[0]}]="${infos[1]}"
 
-    echo "%{l}   ${modules[tags]}%{r}${modules[song]}%{F-} ·${modules[clock]}%{F-}%{B-} "
+    echo "%{l}   ${modules[tags]}%{c}${modules[clock]}%{r}${modules[song]}%{F-}%{F-}%{B-}  "
 
-done <"$fifo" | /usr/bin/lemonbar -n panel -bpdg ${width}x${height}+${x}+${y} \
-    -f "$font_1" -f "$font_2" -f "$font_3" -B $back_color -F $fore_color | $sh &
+done <"$fifo" | /usr/bin/lemonbar -n panel -pdg ${width}x${height}+${x}+${y} \
+    -o $offset -f "$font_1" -f "$font_2" -f "$font_3" -B $back_color \
+    -F $fore_color | $sh &
 
 wid=$(xdo id -a panel)
 tries_left=20

@@ -18,7 +18,7 @@ pull() {
         *)
             ;;
     esac
-    echo "$buf $ico $txt"
+    echo "$buf $ico $txt "
 }
 
 pull

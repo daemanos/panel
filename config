@@ -2,23 +2,24 @@
 source $HOME/.config/colors/colors.sh
 
 # geometry
-x=10
-y=10
-width=$(($(xdpyinfo | grep 'dimensions:' | cut -d' ' -f7 | cut -dx -f1)-20))
-height=28
+x=0
+y=0
+width=$(xdpyinfo | grep 'dimensions:' | cut -d' ' -f7 | cut -dx -f1)
+height=38
+offset=-2
 
 # style
 font_1='Source Code Pro:size=8:style=Medium,Regular'
 font_2='Material Icons:size=11'
 #font_3='Terminus:size=9'
-back_color="#00$black"
+back_color="#aa$black"
 fore_color="#$bright_white"
 
 # module-specific formats
 fmt_clock="%{F-}%{B-} "
 fmt_title="%{F-}%{B-}"
 fmt_song_playing="%{F-}%{B-}"
-fmt_song_paused="%{F#$gray}%{B-}"
+fmt_song_paused="%{F#$white}%{B-}"
 fmt_wifi="%{F-}%{B-}"
 fmt_wifi_off="%{F#$gray}%{B-}"
 
@@ -29,10 +30,10 @@ ico_wifi=""             # wifi
 ico_wifi_off=""         # wifi-off
 
 # tag icons
-tag_empty="%{F#$gray} ○ %{F-}"
-tag_occupied="%{F#$gray} ● %{F-}"
-tag_current="%{F#$bright_white} ● %{F-}"
-tag_urgent="%{F#$orange} ● %{F-}"
+tag_empty="%{F#$gray}———%{F-}" # ○
+tag_occupied="%{F#$white}———%{F-}" # ●
+tag_current="%{F#$bright_white}———%{F-}"
+tag_urgent="%{F#$orange}———%{F-}"
 
 # module-specific options
 clock_fmt='%H:%M' # not to be confused with fmt_clock
