@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-ROOT="$HOME/.config/panel"
+ROOT="$HOME/.local/panel"
 source $ROOT/config
 source $HOME/.config/colors/colors.sh
 
@@ -22,7 +22,15 @@ while IFS='' read -r cmd; do
     IFS="$cmd_ifs" read -ra infos <<< "$cmd"
     modules[${infos[0]}]="${infos[1]}"
 
-    echo "%{l}   ${modules[tags]}%{c}${modules[clock]}%{r}${modules[song]}%{F-}%{F-}%{B-}  "
+    if [ -z "${modules[msg]}" ]; then
+        left="${modules[tags]}"
+    else
+        left="${modules[msg]}"
+    fi
+    center="${modules[clock]}"
+    right="${modules[timew]}" #"  ${modules[song]}"
+
+    echo "%{l}   $left%{c}$center%{r}$right%{F-}%{F-}%{B-}  "
 
 done <"$fifo" | /usr/bin/lemonbar -n panel -pdg ${width}x${height}+${x}+${y} \
     -o $offset -f "$font_1" -f "$font_2" -f "$font_3" -B $back_color \

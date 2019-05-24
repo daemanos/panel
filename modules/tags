@@ -1,6 +1,6 @@
 #!/bin/bash
 # vim:set syntax=sh:
-source $HOME/.config/panel/config
+source $HOME/.local/panel/config
 
 bspc subscribe report | while read status; do
     buf="tags$cmd_ifs"

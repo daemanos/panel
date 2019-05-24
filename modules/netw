@@ -1,5 +1,5 @@
 #!/bin/bash
-source $HOME/.config/panel/config
+source $HOME/.local/panel/config
 [ ! -e /sys/class/net/$netw_iface ] && exit 1
 
 oldsig=""

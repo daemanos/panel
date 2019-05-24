@@ -5,38 +5,41 @@ source $HOME/.config/colors/colors.sh
 x=0
 y=0
 width=$(xdpyinfo | grep 'dimensions:' | cut -d' ' -f7 | cut -dx -f1)
-height=38
+height=42
 offset=-2
 
 # style
 font_1='Source Code Pro:size=8:style=Medium,Regular'
 font_2='Material Icons:size=11'
 #font_3='Terminus:size=9'
-back_color="#aa$black"
-fore_color="#$bright_white"
+back_color="#77000000"
+fore_color="#f5f7fa"
 
 # module-specific formats
 fmt_clock="%{F-}%{B-} "
 fmt_title="%{F-}%{B-}"
 fmt_song_playing="%{F-}%{B-}"
-fmt_song_paused="%{F#$white}%{B-}"
+fmt_song_paused="%{F#a6afb8}%{B-}"
 fmt_wifi="%{F-}%{B-}"
-fmt_wifi_off="%{F#$gray}%{B-}"
+fmt_wifi_off="%{F#667581}%{B-}"
+fmt_task="%{F-}%{B-}"
 
 # module icons
 ico_song_playing=""     # play
 ico_song_paused=""      # pause
 ico_wifi=""             # wifi
 ico_wifi_off=""         # wifi-off
+ico_task=""             # assignment
 
 # tag icons
-tag_empty="%{F#$gray}———%{F-}" # ○
-tag_occupied="%{F#$white}———%{F-}" # ●
-tag_current="%{F#$bright_white}———%{F-}"
-tag_urgent="%{F#$orange}———%{F-}"
+tag_empty="%{F#667581}———%{F-}" # ○
+tag_occupied="%{F#a6afb8}———%{F-}" # ●
+tag_current="%{F#f5f7fa}———%{F-}"
+tag_urgent="%{F#e66b2b}———%{F-}"
 
 # module-specific options
 clock_fmt='%H:%M' # not to be confused with fmt_clock
+song_fmt="{{artist}} - {{title}}"
 netw_iface='net0'
 tag_switch_cmd="bspc desktop -f"
 vol_card=1

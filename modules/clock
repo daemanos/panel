@@ -1,5 +1,5 @@
 #!/bin/bash
-source $HOME/.config/panel/config
+source $HOME/.local/panel/config
 while true; do
     now="$(date +"$clock_fmt")"
     if [[ "$now" != "$before" ]]; then

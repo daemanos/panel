@@ -1,16 +1,16 @@
 #!/bin/bash
-source $HOME/.config/panel/config
+source $HOME/.local/panel/config
 
-pull() {
+while dbus-monitor "interface=org.mpris.MediaPlayer2.Player" | read ; do
     buf="song$cmd_ifs"
-    info="$(mpc current)"
-    case `mpc | awk 'NR==2 { print $1 }' | tr -d '[]'` in
-        playing)
+    info="$(playerctl -f "$song_fmt" metadata)"
+    case `playerctl status` in
+        Playing)
             buf="$buf$fmt_song_playing"
             ico="$ico_song_playing"
             txt="$info"
             ;;
-        paused)
+        Paused)
             buf="$buf$fmt_song_paused"
             ico="$ico_song_paused"
             txt="$info"
@@ -18,10 +18,5 @@ pull() {
         *)
             ;;
     esac
-    echo "$buf $ico $txt "
-}
-
-pull
-mpc idleloop | while read; do
-    pull
+    echo "$buf $ico $(~/.local/bin/trunc "$txt" 100) "
 done
